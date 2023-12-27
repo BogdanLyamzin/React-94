@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">CLick me</button>
+    <script>
+        const btn = document.getElementById("btn");
+
+        const obj = {
+            createHandleButton() {
+                // console.log("this when create function", this)
+                const func = ()=> {
+                    console.log(this);
+                }
+
+                return func;
+            }
+        }
+
+        const handleClick = () => {
+            console.log(this);
+        }
+        /*
+        ()=> {
+            this = window;
+            const handleClick = () => {
+            console.log(this);
+        }
+        }
+        */
+
+        const buttonHandleClick = obj.createHandleButton()
+
+        btn.addEventListener("click", buttonHandleClick)
+    </script>
+</body>
+
+</html>

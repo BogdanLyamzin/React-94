@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">CLick me</button>
+    <script>
+        const btn = document.getElementById("btn");
+        const obj = {
+            text: "Button",
+
+            handleButtonClick() {
+                console.log(this);
+            }
+        };
+
+        obj.handleButtonClick()
+
+        const handleClick = function() {
+            console.log(this)
+        }
+        // /*
+        // window.handleClick = function() {
+        //     console.log(this)
+        // }
+        // */
+
+        // handleClick();
+
+        // btn.addEventListener("click", handleClick)
+        // btn.addEventListener("click", obj.handleButtonClick)
+
+        setTimeout(obj.handleButtonClick, 1000)
+    </script>
+</body>
+</html>
