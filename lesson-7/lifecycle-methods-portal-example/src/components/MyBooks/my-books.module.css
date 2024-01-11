@@ -1,0 +1,10 @@
+.wrapper {
+    display: flex;
+    gap: 30px;
+}
+
+.listWrapper {
+    padding: 15px;
+    border: 1px solid;
+    border-radius: 5px;
+}
