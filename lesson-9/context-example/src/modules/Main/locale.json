@@ -1,0 +1,10 @@
+{
+    "title": {
+        "ua": "Назва сторінки",
+        "en": "Page title"
+    },
+    "content": {
+        "ua": "Зміст сторінки",
+        "en": "Page content"
+    }
+}

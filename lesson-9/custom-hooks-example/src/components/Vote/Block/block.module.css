@@ -1,0 +1,12 @@
+.block {
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 5px 15px 15px;
+    width: 300px;
+}
+
+.blockTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
