@@ -1,7 +1,7 @@
-import { Component, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import Button from "../Button/Button";
-import Modal from "../Modal/Modal";
 
 import PostsSearchForm from "./PostsSearchForm/PostsSearchForm";
 import PostsSearchList from "./PostsSearchList/PostsSearchList";
@@ -11,13 +11,17 @@ import { searchPosts } from "../../api/posts";
 import styles from "./posts-search.module.css";
 
 const PostsSearch = () => {
-    const [search, setSearch] = useState("");
+    // const [search, setSearch] = useState("");
+    // const [page, setPage] = useState(1);
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [page, setPage] = useState(1);
-    const [modalOpen, setModalOpen] = useState(false);
-    const [postDetails, setPostDetails] = useState({});
+    
+
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const search = searchParams.get("search");
+    const page = searchParams.get("page");
 
     useEffect(()=> {
         const fetchPosts = async ()=> {
@@ -40,25 +44,14 @@ const PostsSearch = () => {
     }, [search, page])
 
     const handleSearch = ({ search }) => {
-        setSearch(search);
+        // setSearch(search);
+        setSearchParams({search, page: 1});
+        // setPage(1);
         setPosts([]);
-        setPage(1);
+        
     }
 
-    const loadMore = () => setPage(prevPage => prevPage + 1);
-
-    const showModal = ({ title, body }) => {
-        setModalOpen(true);
-        setPostDetails({
-            title,
-            body,
-        })
-    }
-
-    const closeModal = () => {
-        setModalOpen(false);
-        setPostDetails({})
-    }
+    const loadMore = () => setSearchParams({search, page: Number(page) + 1});
 
     const isPosts = Boolean(posts.length);
 
@@ -67,14 +60,10 @@ const PostsSearch = () => {
             <PostsSearchForm onSubmit={handleSearch} />
             {error && <p className={styles.error}>{error}</p>}
             {loading && <p>...Loading</p>}
-            {isPosts && <PostsSearchList showModal={showModal} items={posts} />}
+            {isPosts && <PostsSearchList items={posts} />}
             {isPosts && <div className={styles.loadMoreWrapper}>
                 <Button onClick={loadMore} type="button">Load more</Button>
             </div>}
-            {modalOpen && <Modal close={closeModal}>
-                            <h2>{postDetails.title}</h2>
-                            <p>{postDetails.body}</p>
-                        </Modal>}
         </>
     )
 }

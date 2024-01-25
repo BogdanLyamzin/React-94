@@ -1,15 +1,18 @@
+import { Link, useLocation } from "react-router-dom";
+
 import styles from "./posts-search-list.module.css";
 
-const PostsSearchList = ({showModal, items}) => {
-    const elements = items.map(({ id, title, body }) => (<li key={id} onClick={()=> showModal({title, body})} className={styles.item}>
-        <h3>{title}</h3>
-        <p>{body}</p>
+const PostsSearchList = ({items}) => {
+    const location = useLocation();
+
+    const elements = items.map(({ id, title }) => (<li key={id} className={styles.item}>
+        <Link to={`/posts/${id}`} state={{from: location}}>{title}</Link>
     </li>));
 
     return (
-        (<ul className={styles.list}>
+        (<ol className={styles.list}>
             {elements}
-        </ul>)
+        </ol>)
     )
 }
 

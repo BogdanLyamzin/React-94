@@ -1,3 +1,5 @@
+import { Link, Outlet } from "react-router-dom";
+
 import SinglePost from "../../components/SinglePost/SinglePost";
 
 import styles from "./single-post-page.module.css";
