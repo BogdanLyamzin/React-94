@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
 
 import MyBooksForm from "./MyBooksForm/MyBooksForm";
 import MyBookList from "./MyBookList/MyBookList";
 
+import {addBook, deleteBook} from "../../redux/actions";
+
 import styles from "./my-books.module.css";
 
 const MyBooks = () => {
     const books = useSelector(store => store.books);
+    const dispatch = useDispatch();
 
     const [filter, setFilter] = useState("");
-/*
+
     const isDublicate = ({ title, author }) => {
         const normalizedTitle = title.toLowerCase();
         const normalizedAuthor = author.toLowerCase();
@@ -25,25 +28,19 @@ const MyBooks = () => {
         return Boolean(dublicate);
     }
 
-    const addBook = (data) => {
+    const onAddBook = (data) => {
         if (isDublicate(data)) {
             return alert(`Book with ${data.title} and ${data.author} already in list`);
         }
 
-        setBooks(prevBooks => {
-            const newBook = {
-                id: nanoid(),
-                ...data,
-            };
-
-            return [...prevBooks, newBook];
-        })
+        const action = addBook(data);
+        dispatch(action);
     }
 
-    const deleteBook = (id) => {
-        setBooks(prevBooks => prevBooks.filter(item => item.id !== id))
+    const onDeleteBook = (id) => {
+        dispatch(deleteBook(id));
     }
-
+/*
     const changeFitler = ({ target }) => setFilter(target.value);
 
     const getFilteredBooks = () => {
@@ -67,10 +64,10 @@ const MyBooks = () => {
 */
     return (
         <div className={styles.wrapper}>
-            <MyBooksForm  />
+            <MyBooksForm onSubmit={onAddBook} />
             <div className={styles.listWrapper}>
                 <input  name="filter" placeholder="Search" />
-                <MyBookList items={books} deleteBook={()=>{}} />
+                <MyBookList items={books} deleteBook={onDeleteBook} />
             </div>
         </div>
     )
