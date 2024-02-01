@@ -1,11 +1,11 @@
-import { createStore } from "redux";
+import { legacy_createStore } from "redux";
 import { devToolsEnhancer } from "@redux-devtools/extension";
 
-import reducer from "./reducer";
+import rootReducer from "./rootReducer";
 
 const enchancer = devToolsEnhancer();
 
-const store = createStore(reducer, enchancer);
+const store = legacy_createStore(rootReducer, enchancer);
 /*
 const createStore = (reducer, initialState) {
     if(initialState) {

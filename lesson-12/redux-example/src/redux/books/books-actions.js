@@ -1,6 +1,6 @@
 import {nanoid} from "nanoid";
 
-import { ADD_BOOK, DELETE_BOOK } from "./constants";
+import { ADD_BOOK, DELETE_BOOK } from "./books-constants";
 
 export const addBook = payload => {
     return {

@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import MyBooksForm from "./MyBooksForm/MyBooksForm";
 import MyBookList from "./MyBookList/MyBookList";
 
-import {addBook, deleteBook} from "../../redux/books/books-actions";
-import {setFilter} from "../../redux/filter/filter-actions";
+import {addBook, deleteBook} from "../../redux/books/books-slice";
+import {setFilter} from "../../redux/filter/filter-slice";
 import { getFilteredBooks } from "../../redux/books/books-selectors";
 
 import styles from "./my-books.module.css";
