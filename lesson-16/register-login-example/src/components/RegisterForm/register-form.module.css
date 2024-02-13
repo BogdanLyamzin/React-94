@@ -1,0 +1,9 @@
+.block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.block label {
+    width: 80px;
+}

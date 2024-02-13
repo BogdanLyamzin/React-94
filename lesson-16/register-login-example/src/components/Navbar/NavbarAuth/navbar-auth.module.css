@@ -1,0 +1,19 @@
+.block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.link {
+    text-decoration: none;
+    font-size: 18px;
+    color: #000;
+}
+
+.link:hover {
+    border-bottom: 1px solid;
+}
+
+.link:global(.active) {
+    font-weight: bold;
+}

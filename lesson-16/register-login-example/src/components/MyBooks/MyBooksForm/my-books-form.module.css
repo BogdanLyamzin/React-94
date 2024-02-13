@@ -1,0 +1,15 @@
+.form {
+    padding: 15px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.formGroup label {
+    width: 90px;
+}
